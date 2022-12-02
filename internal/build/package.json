@@ -1,15 +1,13 @@
 {
-  "name": "@dew-ui/components",
+  "name": "@dew-ui/build",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@dew-ui/utils": "workspace:^1.0.0"
-  }
+  "license": "ISC"
 }
