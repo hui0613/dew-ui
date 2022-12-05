@@ -1,6 +1,6 @@
 import type { ModuleFormat } from 'rollup'
 import * as path from 'path'
-import { dewOutput } from '@dew-ui/build-utils'
+import { dewOutput } from '@vert-ui/build-utils'
 
 export const modules = ['esm', 'cjs'] as const
 
@@ -29,7 +29,7 @@ export const buildConfig: Record<Module, BuildInfo> = {
       path: path.resolve(dewOutput, 'es'),
     },
     bundle: {
-      path: `dew-ui/es`,
+      path: `vert-ui/es`,
     },
   },
   cjs: {
@@ -41,7 +41,7 @@ export const buildConfig: Record<Module, BuildInfo> = {
       path: path.resolve(dewOutput, 'lib'),
     },
     bundle: {
-      path: `dew-ui/lib`,
+      path: `vert-ui/lib`,
     },
   },
 }

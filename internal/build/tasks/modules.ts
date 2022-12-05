@@ -1,7 +1,7 @@
 import { buildConfigEntries } from '../build-info'
 import { generateExternal, writeBundles } from '../utils/rollup'
 import { rollup, OutputOptions } from 'rollup'
-import { pkgRoot, excludeFiles, dewRoot } from '@dew-ui/build-utils'
+import { pkgRoot, excludeFiles, dewRoot } from '@vert-ui/build-utils'
 import glob from 'fast-glob'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'

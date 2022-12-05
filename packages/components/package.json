@@ -1,5 +1,5 @@
 {
-  "name": "@dew-ui/components",
+  "name": "@vert-ui/components",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dew-ui/utils": "workspace:^1.0.0"
+    "@vert-ui/utils": "workspace:^1.0.0"
   }
 }

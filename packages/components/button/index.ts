@@ -1,4 +1,4 @@
-import { withInstall } from '@dew-ui/utils';
+import { withInstall } from '@vert-ui/utils'
 import Button from './src/button.vue'
 
 const DewButton = withInstall(Button)

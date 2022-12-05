@@ -4,7 +4,7 @@ import fs from 'fs'
 import glob from 'fast-glob'
 import { Project } from 'ts-morph'
 import { parse, compileScript } from '@vue/compiler-sfc'
-import { projRoot, dewOutput, pkgRoot, dewRoot, excludeFiles } from '@dew-ui/build-utils'
+import { projRoot, buildOutput, pkgRoot, dewRoot, excludeFiles } from '@vert-ui/build-utils'
 
 export async function generateTypes() {
   // 这部分内容具体可以查阅 ts-morph 的文档
@@ -16,7 +16,7 @@ export async function generateTypes() {
       baseUrl: projRoot,
       noEmitOnError: false,
       noImplicitAny: false,
-      outDir: path.resolve(dewOutput, 'types'), // 可以设置自定义的打包文件夹，如 'types'
+      outDir: path.resolve(buildOutput, 'types'), // 可以设置自定义的打包文件夹，如 'types'
     },
     tsConfigFilePath: path.resolve(projRoot, 'tsconfig.json'),
     skipAddingFilesFromTsConfig: true,
@@ -24,7 +24,7 @@ export async function generateTypes() {
 
   // 获取 src 下的 .vue 和 .ts 文件
   const files = excludeFiles(
-    await glob(['**/*.{js?(x),ts?(x),vue}', '!dew-editor/**/*'], {
+    await glob(['**/*.{js?(x),ts?(x),vue}', '!vert-ui/**/*'], {
       cwd: pkgRoot,
       absolute: true,
       onlyFiles: true,

@@ -1,4 +1,4 @@
-import { getPackageDependencies, dewPackage } from '@dew-ui/build-utils'
+import { getPackageDependencies, dewPackage } from '@vert-ui/build-utils'
 import type { RollupBuild, OutputOptions } from 'rollup'
 
 export const generateExternal = async (options: { full: boolean }) => {
