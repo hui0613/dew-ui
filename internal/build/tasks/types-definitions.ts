@@ -22,6 +22,31 @@ export async function generateTypes() {
     skipAddingFilesFromTsConfig: true,
   })
 
+  const sourceFiles = await addSourceFiles(project)
+
+  const diagnostics = project.getPreEmitDiagnostics()
+
+  // 输出解析过程中的错误信息
+  console.log(project.formatDiagnosticsWithColorAndContext(diagnostics))
+
+  await project.emit({
+    emitOnlyDtsFiles: true,
+  })
+
+  // 随后将解析完的文件写道打包路径
+  for (const sourceFile of sourceFiles) {
+    const emitOutput = sourceFile.getEmitOutput()
+
+    for (const outputFile of emitOutput.getOutputFiles()) {
+      const filePath = outputFile.getFilePath()
+
+      await fs.promises.mkdir(path.dirname(filePath), { recursive: true })
+      await fs.promises.writeFile(filePath, pathRewriter('esm')(outputFile.getText()), 'utf8')
+    }
+  }
+}
+
+async function addSourceFiles(project: Project) {
   // 获取 src 下的 .vue 和 .ts 文件
   const files = excludeFiles(
     await glob(['**/*.{js?(x),ts?(x),vue}', '!vert-ui/**/*'], {
@@ -72,22 +97,5 @@ export async function generateTypes() {
     }),
   ])
 
-  const diagnostics = project.getPreEmitDiagnostics()
-
-  // 输出解析过程中的错误信息
-  console.log(project.formatDiagnosticsWithColorAndContext(diagnostics))
-
-  project.emitToMemory()
-
-  // 随后将解析完的文件写道打包路径
-  for (const sourceFile of sourceFiles) {
-    const emitOutput = sourceFile.getEmitOutput()
-
-    for (const outputFile of emitOutput.getOutputFiles()) {
-      const filePath = outputFile.getFilePath()
-
-      await fs.promises.mkdir(path.dirname(filePath), { recursive: true })
-      await fs.promises.writeFile(filePath, pathRewriter('esm')(outputFile.getText()), 'utf8')
-    }
-  }
+  return sourceFiles
 }
