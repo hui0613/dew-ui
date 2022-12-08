@@ -1,3 +1,1 @@
-import DewButton from '@vert-ui/components/button'
-
-export { DewButton }
+export * from '@vert-ui/components'
